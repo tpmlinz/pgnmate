@@ -10,6 +10,9 @@ local.properties
 .loadpath
 .recommenders
 
+pgnsuite/pgntools/target/*
+pgnsuite/pgnparser/target/*
+
 # External tool builders
 .externalToolBuilders/
 
