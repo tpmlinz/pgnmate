@@ -6,7 +6,7 @@ import com.google.inject.Inject
 import com.google.inject.Provider
 import com.pgnmate.pgn.facade.IPGNDatabase
 
-class DefaultDatabaseReader implements IDatabaseReader {
+package class DefaultDatabaseReader implements IDatabaseReader {
 	
 	@Inject Provider<IPGNDatabaseParser> parserProvider
 	

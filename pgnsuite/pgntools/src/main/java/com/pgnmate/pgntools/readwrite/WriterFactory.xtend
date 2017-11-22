@@ -5,7 +5,7 @@ import com.google.inject.Provider
 import java.util.function.Supplier
 import org.apache.log4j.Logger
 
-class WriterFactory implements IWriterFactory {
+package class WriterFactory implements IWriterFactory {
 	
 	static val logger = Logger::getLogger(WriterFactory)	
 	
