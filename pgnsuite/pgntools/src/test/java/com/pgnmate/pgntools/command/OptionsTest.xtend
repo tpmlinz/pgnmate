@@ -1,14 +1,13 @@
-package com.pgnmate.pgntools.test
+package com.pgnmate.pgntools.command
 
-
-import org.junit.jupiter.api.Disabled
+import com.pgnmate.pgntools.AbstractPGNToolTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 
-import static extension org.junit.jupiter.api.Assertions.*
-
+//@RunWith(JUnitPlatform)
+//@IncludeEngines("junit-jupiter")
 @DisplayName("Options Test")
 @TestInstance(Lifecycle.PER_CLASS)
 class OptionsTest extends AbstractPGNToolTest{

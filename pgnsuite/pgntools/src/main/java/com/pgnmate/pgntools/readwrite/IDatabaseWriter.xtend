@@ -1,7 +1,16 @@
 package com.pgnmate.pgntools.readwrite
 
-import com.pgnmate.pgn.facade.IPGNDatabase
+import com.pgnmate.pgnparser.facade.IPGNDatabase
 
-interface IDatabaseWriter {	
+
+/**
+ * PGN database writer interface
+ */
+interface IDatabaseWriter {
+	
+	/**
+	 * Write DB to target
+	 * @param db to write from
+	 */	
 	def void write(IPGNDatabase db)
 }

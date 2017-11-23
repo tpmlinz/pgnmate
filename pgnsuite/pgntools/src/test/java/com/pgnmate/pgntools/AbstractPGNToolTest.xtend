@@ -1,4 +1,4 @@
-package com.pgnmate.pgntools.test
+package com.pgnmate.pgntools
 
 import com.google.inject.Guice
 import com.pgnmate.pgntools.ApplicationModule

@@ -1,5 +1,17 @@
 package com.pgnmate.pgntools.command;
 
+
+/**
+ * Output message verbosity
+ * 
+ * <ul>
+ * 	<li><b>NORMAL</b>: default output messages</li>
+ * 	<li><b>QUIET</b>: minimal no output messages</li>
+ *  <li><b>DIAGNOSITC</b>: extended output messages<li> 
+ * </ul>
+ * @author terry
+ *
+ */
 public enum Verbosity {
 	
 		NORMAL("normal mode", "normsl mode", "n"),

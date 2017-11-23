@@ -1,9 +1,10 @@
-package com.pgnmate.pgntools.test
+package com.pgnmate.pgntools.readwrite
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
+import com.pgnmate.pgntools.AbstractPGNToolTest
 
 @DisplayName("Read+Write Factory")
 @TestInstance(Lifecycle.PER_CLASS)

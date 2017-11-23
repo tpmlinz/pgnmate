@@ -5,6 +5,10 @@ import com.google.inject.Provider
 import java.util.function.Supplier
 import org.apache.log4j.Logger
 
+
+/**
+ * Reader factory implementation
+ */
 package class ReaderFactory implements IReaderFactory {
 	
 	static val logger = Logger::getLogger(ReaderFactory)	

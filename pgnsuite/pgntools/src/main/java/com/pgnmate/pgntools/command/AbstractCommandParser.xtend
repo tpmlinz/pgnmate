@@ -2,25 +2,23 @@ package com.pgnmate.pgntools.command
 
 import com.google.inject.Inject
 import com.google.inject.Provider
-import com.pgnmate.pgn.facade.IPGNDatabase
+import com.pgnmate.pgnparser.facade.IPGNDatabase
 import com.pgnmate.pgntools.Main
 import com.pgnmate.pgntools.readwrite.DatabaseFactoryKey
 import com.pgnmate.pgntools.readwrite.IReaderFactory
 import com.pgnmate.pgntools.readwrite.IWriterFactory
-import java.util.ArrayList
 import java.util.Map
-import org.apache.commons.cli.AlreadySelectedException
 import org.apache.commons.cli.CommandLine
 import org.apache.commons.cli.DefaultParser
 import org.apache.commons.cli.HelpFormatter
 import org.apache.commons.cli.Option
 import org.apache.commons.cli.OptionGroup
 import org.apache.commons.cli.Options
-import org.apache.log4j.Logger
 import org.apache.commons.cli.ParseException
+import org.apache.log4j.Logger
 
 /**
- * Total Hack - will need sorting out.
+ * Parses command line arguments
  */
 abstract class AbstractCommandParser implements ICommandParser{		
 	
@@ -93,6 +91,10 @@ abstract class AbstractCommandParser implements ICommandParser{
 	protected var ParserOutput parserOutput 
 
 	
+	/**
+	 * Parses command line arguments to find reader and writer
+	 * @param args to parse
+	 */
 	override parse(String[] args){
 		
 		parserOutput = new ParserOutput(args)	// data struture for result		
