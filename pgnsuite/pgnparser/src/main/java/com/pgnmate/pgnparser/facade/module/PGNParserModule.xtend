@@ -26,6 +26,6 @@ class PGNParserModule extends AbstractModule{
 		bind(IPGNDatabaseParser).to(PGNDatabaseParser)
 		bind(IParserProgressListener).annotatedWith(Names.named("Logging")).to(LoggingParserProgressListener)
 		bind(IParserProgressListener).annotatedWith(Names.named("Debugging")).to(DebugParserProgressListener)
-		bind(IParserProgressListener).annotatedWith(Names.named("Default")).to(NullParserProgressListener)	
+		bind(IParserProgressListener).annotatedWith(Names.named("Null")).to(NullParserProgressListener)	
 	}	
 }

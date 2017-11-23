@@ -11,7 +11,7 @@ interface IPGNGame extends IPGNNode {
 		ASTERISK
 	}
 	
-	def Collection<IPGNElement> getElements()	
+	def Collection<IPGNNode> getElements()	
 	def Collection<IPGNTagPair> getTags()
 	
 	def EGameResult getResult()

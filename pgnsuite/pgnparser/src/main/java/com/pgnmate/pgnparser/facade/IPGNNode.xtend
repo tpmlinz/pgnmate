@@ -1,10 +1,8 @@
 package com.pgnmate.pgnparser.facade
 
-import com.pgnmate.pgnparser.facade.ENode
 import java.io.Serializable
+import java.util.Collection
 
-interface IPGNNode extends Serializable {	
-
-	def ENode getNodeType()	
-
+interface IPGNNode extends Serializable {
+	def Collection<IPGNNode> getChildren()
 }

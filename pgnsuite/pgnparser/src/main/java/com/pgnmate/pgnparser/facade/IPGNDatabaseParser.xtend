@@ -5,7 +5,7 @@ import org.antlr.v4.runtime.CharStream
 /**
  * PGN Database parser interface
  */
-interface IPGNDatabaseParser extends IObservableParserProgress{
+interface IPGNDatabaseParser{
 	
 	/**
 	 * Parse PGN database
@@ -21,5 +21,8 @@ interface IPGNDatabaseParser extends IObservableParserProgress{
 	 * @Note The created CharStream assumes US-ASCII charset as per PGN standard
 	 */
 	def IPGNDatabase parseFromFileName(String fileName)
+	
+	def void addProgressListener(IParserProgressListener listener)	
+	def void removeProgressLsitener(IParserProgressListener listener)
 		
 }

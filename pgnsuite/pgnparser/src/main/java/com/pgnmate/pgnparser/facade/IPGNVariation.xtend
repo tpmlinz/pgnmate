@@ -2,7 +2,7 @@ package com.pgnmate.pgnparser.facade
 
 import java.util.Collection
 
-interface IPGNVariation extends IPGNElement {
+interface IPGNVariation extends IPGNNode {
 	
-	def Collection<IPGNElement> getElements()
+	def Collection<IPGNNode> getElements()
 }

@@ -1,24 +1,24 @@
 package com.pgnmate.pgnparser.facade.module
 
-
-import com.pgnmate.pgnparser.facade.IObservableParserProgress
+import com.pgnmate.pgn.PGNBaseListener
+import com.pgnmate.pgn.PGNParser
+import com.pgnmate.pgnparser.facade.ESuffix
 import com.pgnmate.pgnparser.facade.IPGNDatabase
 import com.pgnmate.pgnparser.facade.IPGNGame.EGameResult
 import com.pgnmate.pgnparser.facade.IPGNNode
 import com.pgnmate.pgnparser.facade.IPGNValidator
 import com.pgnmate.pgnparser.facade.IPGNVariation
+import com.pgnmate.pgnparser.facade.IParserProgressEvent
 import com.pgnmate.pgnparser.facade.IParserProgressListener
 import com.pgnmate.pgnparser.facade.PGNFactory
 import java.util.ArrayDeque
+import java.util.Collection
 import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.misc.ParseCancellationException
-import org.apache.log4j.Logger
-import com.pgnmate.pgn.PGNBaseListener
-import com.pgnmate.pgn.PGNParser
 import org.antlr.v4.runtime.tree.ErrorNode
-import com.pgnmate.pgnparser.facade.ESuffix
+import org.apache.log4j.Logger
 
-package class PGNDatabaseParseListener extends PGNBaseListener implements IObservableParserProgress{
+package class PGNDatabaseParseListener extends PGNBaseListener{
 		
 	static val logger = Logger::getLogger(PGNDatabaseParseListener)		
 	
@@ -27,33 +27,51 @@ package class PGNDatabaseParseListener extends PGNBaseListener implements IObser
 	 */
 	val validator = new IPGNValidator{	override validate(IPGNNode node, Object ctx) {}	}
 	
+	var int dbSize	
+	
+	static class ParserProgressEvent  implements IParserProgressEvent{		
+		val int event
+		val int current
+		val int size
+				
+		new(int event, int current, int size){ this.event = event this.current = current this.size = size }	
+		override int getCurrent(){ current }
+		override int getSize(){ size }
+		override getEventID(){ event }	
+	}
+	
 	
 	var IPGNDatabase db
 	def getDB(){ db }
 	
+	var Collection<IParserProgressListener> progressListeners
+	
+	def getProgressListeners(){ progressListeners }	
+	def void setProgressListeners(Collection<IParserProgressListener> listeners){ progressListeners = listeners }		
+	def private notifyProgress(int event, int current, int size){
+		if(!progressListeners.nullOrEmpty){ 
+			val arg = new ParserProgressEvent(event, current, dbSize)
+			progressListeners.forEach[onProgress(arg)]
+		}
+	}
+	
 		
 	val variationStack = new ArrayDeque<IPGNVariation>
-		
-	// ---------------------------------
-	// Progress listener implementation
-	var IParserProgressListener progessListener = null						
-	override setProgressListener(IParserProgressListener listener) { this.progessListener = listener }	
-	override IParserProgressListener getProgressListener() { this.progessListener }
-	//----------------------------------			
+	
 	
 	override enterPgn_database(PGNParser.Pgn_databaseContext ctx) { 
 		
 		logger.trace(['''enterPgn_database(«ctx.toDebugString»)'''])
-				
-		progessListener?.start(ctx.start.inputStream.size)
+		dbSize = ctx.start.inputStream.size			
+		notifyProgress(IParserProgressEvent::EV_START, ctx.start.startIndex, dbSize)
 		
 		db = PGNFactory::instance.createDatabase
 		validator.validate(db, ctx) //FIXME - when to call validator - before or after adding to node model
 	}
 	
 	override exitPgn_database(PGNParser.Pgn_databaseContext ctx){
-		logger.trace(['''exitPgn_database(«ctx.toDebugString»)'''])			
-		progessListener?.end()
+		logger.trace(['''exitPgn_database(«ctx.toDebugString»)'''])
+		notifyProgress(IParserProgressEvent::EV_DONE, ctx.stop.stopIndex, dbSize)		
 	}
 	
 	override enterPgn_game(PGNParser.Pgn_gameContext ctx){
@@ -67,7 +85,7 @@ package class PGNDatabaseParseListener extends PGNBaseListener implements IObser
 	
 	override exitPgn_game(PGNParser.Pgn_gameContext ctx){
 		logger.trace(['''exitPgn_game(«ctx.toDebugString»)'''])										
-		progessListener?.progress(ctx.stop.getStopIndex)
+		notifyProgress(IParserProgressEvent::EV_UPDATE, ctx.stop.stopIndex, dbSize)
 	}
 	
 	override enterTag_pair(PGNParser.Tag_pairContext ctx){

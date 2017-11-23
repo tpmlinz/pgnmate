@@ -1,13 +1,10 @@
 package com.pgnmate.pgnparser.facade
 
+import com.pgnmate.pgnparser.facade.IParserProgressListener
 import com.google.inject.Singleton
 
-/**
- * Singleton null parser progress listener deliberately does nothing
- */
 @Singleton
-class NullParserProgressListener implements IParserProgressListener{	
-	override start(int endValue) {}	
-	override progress(int currentValue) {}	
-	override end() {}	
+class NullParserProgressListener implements IParserProgressListener {	
+	override onProgress(IParserProgressEvent progress) {}
+	
 }

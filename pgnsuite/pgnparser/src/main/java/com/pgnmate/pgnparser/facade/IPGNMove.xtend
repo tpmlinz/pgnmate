@@ -3,7 +3,7 @@ package com.pgnmate.pgnparser.facade
 import com.pgnmate.pgnparser.facade.ESuffix
 
 
-interface IPGNMove extends IPGNElement {
+interface IPGNMove extends IPGNNode {
 		
 	/**
 	 * @return SAN move suffix

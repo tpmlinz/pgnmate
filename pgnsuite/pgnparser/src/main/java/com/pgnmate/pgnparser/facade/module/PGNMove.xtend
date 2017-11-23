@@ -4,12 +4,9 @@ import com.pgnmate.pgnparser.facade.IPGNMove
 import com.pgnmate.pgnparser.facade.ESuffix
 import com.pgnmate.pgnparser.facade.ECastling
 
-package class PGNMove extends AbstractPGNElement implements IPGNMove {
+package class PGNMove extends AbstractPGNNode implements IPGNMove {
 	
 	static final long serialVersionUID = 1L				
-		
-	static val elementType = ElementType::MOVE	
-	override getElementType() { elementType }
 	
 	var ESuffix suffix = null
 	var int moveIndicator = -1
@@ -46,5 +43,10 @@ package class PGNMove extends AbstractPGNElement implements IPGNMove {
 	}
 	
 	override isCastling() { getCastling !== null }
+	
+	
+	
+	override getChildren(){ emptyList }				
+	
 		
 }

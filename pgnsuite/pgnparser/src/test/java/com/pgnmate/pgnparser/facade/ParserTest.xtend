@@ -266,27 +266,28 @@ package class ParserTest extends AbstractParserTest{
 	def void testParserProgressObserver(){
 		
 		val file = new File("Test2.pgn".toResourcePath)		
-		val fileLength = file.length
+		val fileLength = file.length		
+		assertTrue(fileLength > 0, "zero length input file")
 		
 		val progessListener = new IParserProgressListener{
 			
-			var int previous = 0			
-			override start(int size) {size.assertEquals(fileLength) }
+			var int previous = 0
 			
-			override progress(int currentValue) {
-				assertTrue(currentValue > previous)
-				assertTrue(currentValue <= fileLength)
-				previous = currentValue
-			}
-			
-			override end() {				
-				(fileLength - 2).assertEquals(previous) //minus 2 chars for the EOF 
-			}
-			
+			override onProgress(IParserProgressEvent progress){
+				switch(progress.eventID){
+					case IParserProgressEvent::EV_START: progress.size.assertEquals(fileLength)
+					case IParserProgressEvent::EV_UPDATE: {
+						assertTrue(progress.current > previous)
+						assertTrue(progress.current <= fileLength)
+						previous = progress.current
+					}
+					case IParserProgressEvent::EV_DONE: (fileLength - 2).assertEquals(previous) //minus 2 chars for the EOF
+				}
+			}									
 		}
 		val parser = providerParser.get
 		parser.assertNotNull
-		parser.progressListener = progessListener		
+		parser.addProgressListener(progessListener)		
 		parser.parseFromFileName("Test2.pgn".toResourcePath).assertNotNull
 	}
 	

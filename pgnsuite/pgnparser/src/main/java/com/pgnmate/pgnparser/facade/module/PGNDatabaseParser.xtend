@@ -16,10 +16,11 @@ import org.antlr.v4.runtime.RecognitionException
 import org.antlr.v4.runtime.BaseErrorListener
 import com.pgnmate.pgn.PGNLexer
 import com.pgnmate.pgn.PGNParser
+import java.util.List
 
 package class ThrowingErrorListener extends BaseErrorListener {
 	
-	static val instance = new ThrowingErrorListener
+static val instance = new ThrowingErrorListener
    
    static def getInstance(){ instance }
 
@@ -32,10 +33,10 @@ package class ThrowingErrorListener extends BaseErrorListener {
 
 package class PGNDatabaseParser implements IPGNDatabaseParser {
 	
-	static val logger = Logger::getLogger(PGNDatabaseParser)
+	static val logger = Logger::getLogger(PGNDatabaseParser)	
 	
-	var IParserProgressListener progressListener = null
-	
+	var List<IParserProgressListener> progressListeners
+		
 	override parseFromFileName(String fileName) {		
 		val charStream = CharStreams::fromFileName(fileName, StandardCharsets::US_ASCII)
 		parse(charStream)
@@ -51,18 +52,18 @@ package class PGNDatabaseParser implements IPGNDatabaseParser {
 		
 		val parser = new PGNParser(new CommonTokenStream(lexer))
 		//parser.removeErrorListeners
-		parser.addErrorListener(ThrowingErrorListener::instance)
+		parser.addErrorListener(ThrowingErrorListener::instance)		
 		
 		val walker = new ParseTreeWalker
 		val parserListener = new PGNDatabaseParseListener
-		parserListener.progressListener = progressListener
+		parserListener.progressListeners = progressListeners
 			
 		val tree = parser.parse			
 		walker.walk(parserListener, tree)							
 		parserListener.DB
 	}
 	
-	override setProgressListener(IParserProgressListener listener) { this.progressListener = listener }	
-	override getProgressListener() { this.progressListener }
+	override addProgressListener(IParserProgressListener listener) { (progressListeners ?: (progressListeners = newArrayList )).add(listener) }	
+	override removeProgressLsitener(IParserProgressListener listener) { progressListeners?.remove(listener)	}
 	
 }

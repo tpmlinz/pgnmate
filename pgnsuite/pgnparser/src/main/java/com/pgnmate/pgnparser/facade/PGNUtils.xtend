@@ -29,10 +29,6 @@ class PGNUtils {
 	static dispatch def CharSequence decompile(IPGNNag it){
 		'''$«value»'''		
 	}
-			
-	static dispatch def CharSequence decompile(IPGNElement element){
-		'''unknown element «element»'''
-	}
 	
 	static dispatch def CharSequence decompile(IPGNNode node){
 		'''unknown node «node»'''	
