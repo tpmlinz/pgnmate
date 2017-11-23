@@ -9,6 +9,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
+.project
 
 pgnsuite/pgntools/target/*
 pgnsuite/pgnparser/target/*
