@@ -1,61 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<parent>
+    	<groupId>com.pgnmate.pgn</groupId>
+  		<artifactId>pgnsuite</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.pgnmate.pgn</groupId>
 	<artifactId>pgnparser</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	
+	
 
 	<name>pgnparser</name>
 	<url>http://maven.apache.org</url>
 
-	<properties>
-		
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<java.version>1.8</java.version>
-		
-		
-		
+	<properties>		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
 		<antlr4.visitor>false</antlr4.visitor>
 		<antlr4.listener>true</antlr4.listener>
 		<antlr4.version>4.7</antlr4.version>
-		<antlr4.plugin.version>4.7</antlr4.plugin.version>
-		
-        <xtend.version>2.13.0</xtend.version>
+		<antlr4.plugin.version>4.7</antlr4.plugin.version>		       
 	</properties>
 
 	<build>
 		<plugins>
-		
-		<!-- XTend  -->		
-		<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtend.version}</version>
-				<!-- 
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>testCompile</goal>
-							<goal>xtend-install-debug-info</goal>
-							<goal>xtend-test-install-debug-info</goal>
-						</goals>
-					</execution>
-				</executions>
-				-->
-				<!-- 
-				<configuration>
-					<outputDirectory>${project.build.directory}/xtend-gen/main</outputDirectory>
-					<testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
-				</configuration>
-				-->
-			</plugin>
-		
-		
+								
 			<!-- Antlr -->
 			
 			<!--
@@ -107,171 +80,48 @@
 			
 			
 			<!--  Build Helper -->			
-			<plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${basedir}/src/main/xtend-gen</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                    <id>add-test-source</id>
-                    <phase>generate-test-sources</phase>
-                    <goals>
-                    	<goal>add-test-source</goal>
-                    </goals>
-                    <configuration>
-                    	<sources>
-                    		<source>${basedir}/src/test/xtend-gen</source>                    	
-                    	</sources>
-                    </configuration>
-                    </execution>
-                </executions>
-			</plugin>			
-			
-			
-			
-			
-
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-				
-			
-
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				
-				<dependencies>
-					<dependency>
-						<groupId>org.junit.platform</groupId>
-						<artifactId>junit-platform-surefire-provider</artifactId>
-						<version>1.0.1</version>
-					</dependency>
-					<dependency>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-engine</artifactId>
-						<version>5.0.1</version>
-					</dependency>
-				</dependencies>
-				
-				
-				<configuration>
-					<includes>
-						<!-- By default, the Surefire Plugin will automatically include all test 
-						classes with the following wildcard patterns but we have included them explicitly 
-						here -->
-						<include>**/Test*.java</include>
-						<include>**/*Test.java</include>
-						<include>**/*Tests.java</include>
-						<include>**/*TestCase.java</include>
-					</includes>
-				
-					<excludes>
-						<!-- Abstract classes shouldn't be annotated with test but here we explicitly 
-						exclude them anyway -->
-						<exclude>**/Abstract*</exclude>
-					</excludes>
+<!-- 			<plugin> -->
+<!--                 <groupId>org.codehaus.mojo</groupId> -->
+<!--                 <artifactId>build-helper-maven-plugin</artifactId> -->
+<!--                 <version>1.7</version> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <id>add-source</id> -->
+<!--                         <phase>generate-sources</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>add-source</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <sources> -->
+<!--                                 <source>${basedir}/src/main/xtend-gen</source> -->
+<!--                             </sources> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                     <execution> -->
+<!--                     <id>add-test-source</id> -->
+<!--                     <phase>generate-test-sources</phase> -->
+<!--                     <goals> -->
+<!--                     	<goal>add-test-source</goal> -->
+<!--                     </goals> -->
+<!--                     <configuration> -->
+<!--                     	<sources> -->
+<!--                     		<source>${basedir}/src/test/xtend-gen</source>                    	 -->
+<!--                     	</sources> -->
+<!--                     </configuration> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!-- 			</plugin>			 -->
 					
-					<properties>
-						<!-- <includeTags>fast</includeTags> -->
-						<excludeTags>slow</excludeTags>
-						<!-- <configurationParameters> junit.jupiter.conditions.deactivate = * 
-						</configurationParameters> -->
-					</properties>
-				</configuration>
-							
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<configuration>
-					<show>private</show>
-					<nohelp>true</nohelp>
-				</configuration>
-			</plugin>
 
 		</plugins>
 	</build>
 	
 	
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.0-M1</version>
-			</plugin>
-		</plugins>
-	</reporting>
-	
-	
 	
 
 
-	<!-- JUnit -->
 	<dependencies>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.0.1</version>
- 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.0.1</version>
- 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<version>4.12.1</version>
- 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.0.1</version>
- 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-runner</artifactId>
-			<version>1.0.1</version>
- 			<scope>test</scope>
-		</dependency>
-	
-			
-		
-		<!-- To avoid compiler warnings about @API annotations in JUnit code -->
-		<dependency>
-			<groupId>org.apiguardian</groupId>
-			<artifactId>apiguardian-api</artifactId>
-			<version>1.0.0</version>
- 			<scope>test</scope>
-		</dependency>
-		
-		
 		
 		<!-- https://mvnrepository.com/artifact/org.antlr/antlr4-maven-plugin -->
 		<dependency>
@@ -285,54 +135,13 @@
         	<artifactId>antlr4-maven-plugin</artifactId>
         	<version>${antlr4.plugin.version}</version>
     	</dependency>
-
-
-		<!-- Xtend -->
+ 
 		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>${xtend.version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.eclipse.xtend/org.eclipse.xtend.lib.macro -->
-		<dependency>
-    		<groupId>org.eclipse.xtend</groupId>
-    		<artifactId>org.eclipse.xtend.lib.macro</artifactId>
-    		<version>${xtend.version}</version>
-		</dependency>
-
-
-		 
-
-		<!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>4.0</version>
-		</dependency>
+			<groupId>com.pgnmate.pgn</groupId>
+        	<artifactId>common</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+		</dependency>	
 		
-		<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
-		<dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-			<version>1.0</version>
-		</dependency>
-		
-		
-		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-		<dependency>
-    		<groupId>log4j</groupId>
-    		<artifactId>log4j</artifactId>
-    		<version>1.2.17</version>
-		</dependency>
-
 	</dependencies>
 
 
