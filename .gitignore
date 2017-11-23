@@ -12,6 +12,9 @@ local.properties
 
 pgnsuite/pgntools/target/*
 pgnsuite/pgnparser/target/*
+pgnsuite/common/target/*
+
+xtend-gen/
 
 # External tool builders
 .externalToolBuilders/

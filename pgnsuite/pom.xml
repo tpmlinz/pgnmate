@@ -8,9 +8,211 @@
   <artifactId>pgnsuite</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  
+  <name>pgnsuite</name>
+  <url>http://maven.apache.org</url>
 
   <modules>
     <module>pgnparser</module>
     <module>pgntools</module>
+    <module>common</module>
   </modules>
+  
+  <properties>
+  		<java.version>1.8</java.version>	
+  									
+        <xtend.version>2.13.0</xtend.version>
+        
+        <junit.platform.version>1.0.1</junit.platform.version>
+        <junit.jupiter.version>5.0.1</junit.jupiter.version>
+        <junit.vintage.version>4.12.1</junit.vintage.version>   
+  </properties>
+  
+  <!-- Executive decision: All children will depend on xtend :) -->
+  
+  <!-- PGNParser and PGNTools are somehow using different xtend configs - need to unify them -->
+  
+	<build>
+		
+		<plugins>
+	
+	
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+
+<!--  Surefire -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				
+				<configuration>
+          			<excludes>
+            			<exclude>Abstract*</exclude>
+          			</excludes>
+        		</configuration>
+				
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-surefire-provider</artifactId>
+						<version>${junit.platform.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>${junit.jupiter.version}</version>
+					</dependency>
+				</dependencies>														
+			</plugin>
+			
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<configuration>
+					<show>private</show>
+					<nohelp>true</nohelp>
+				</configuration>
+			</plugin>			
+		
+		</plugins>
+				
+	</build>
+	
+	
+	
+	
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0-M1</version>
+			</plugin>
+		</plugins>
+	</reporting>	
+	
+			
+	
+  
+	<dependencies>
+	
+	
+<!-- Xtend -->
+		 
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>${xtend.version}</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>org.eclipse.xtend</groupId>
+    		<artifactId>org.eclipse.xtend.lib.macro</artifactId>
+    		<version>${xtend.version}</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>org.eclipse.xtext</groupId>
+    		<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+    		<version>${xtend.version}</version>
+		</dependency>
+		
+	
+	
+	
+<!-- DI -->
+		<!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>4.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+	
+	
+<!-- Logging -->
+  		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+    		<groupId>log4j</groupId>
+    		<artifactId>log4j</artifactId>
+    		<version>1.2.17</version>
+		</dependency>
+
+
+<!-- JUnit -->
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+ 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+ 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.vintage.version}</version>
+ 			<scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>${junit.platform.version}</version>
+ 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>${junit.platform.version}</version>
+ 			<scope>test</scope>
+		</dependency>			
+		
+		<!-- To avoid compiler warnings about @API annotations in JUnit code -->
+		<dependency>
+			<groupId>org.apiguardian</groupId>
+			<artifactId>apiguardian-api</artifactId>
+			<version>1.0.0</version>
+ 			<scope>test</scope>
+		</dependency>	
+
+<!--  Surefire -->
+
+		
+		
+	</dependencies> 		
+  
 </project>
