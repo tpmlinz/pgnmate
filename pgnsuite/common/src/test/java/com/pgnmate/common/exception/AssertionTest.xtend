@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 //import org.junit.jupiter.api.TestInstance
 
 
+@DisplayName("Assertion Test")
 class AssertionTest {
 	
 	static class MyException extends PGNException{		
