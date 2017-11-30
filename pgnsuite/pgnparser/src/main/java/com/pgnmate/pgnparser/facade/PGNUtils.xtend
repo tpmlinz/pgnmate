@@ -1,5 +1,14 @@
 package com.pgnmate.pgnparser.facade
 
+import com.pgnmate.pgnparser.pgnnode.IPGNDatabase
+import com.pgnmate.pgnparser.pgnnode.IPGNGame
+import com.pgnmate.pgnparser.pgnnode.IPGNMove
+import com.pgnmate.pgnparser.pgnnode.IPGNNag
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
+import com.pgnmate.pgnparser.pgnnode.IPGNTagPair
+import com.pgnmate.pgnparser.pgnnode.IPGNVariation
+import com.pgnmate.common.chess.identifiers.PGNMoveSuffix
+
 class PGNUtils {
 	
 	static dispatch def CharSequence decompile(IPGNDatabase it){
@@ -18,7 +27,7 @@ class PGNUtils {
 		'''[«name» «value»]'''	
 	}
 	
-	static dispatch def CharSequence decompile(ESuffix suffix){
+	static dispatch def CharSequence decompile(PGNMoveSuffix suffix){
 		'''«suffix.suffixText»'''	
 	}
 	
@@ -41,6 +50,6 @@ class PGNUtils {
 		'''null'''	
 	}
 	
-	static private def CharSequence suffixText(ESuffix suffix){ suffix?.getText() ?: "" }
+	static private def CharSequence suffixText(PGNMoveSuffix suffix){ suffix?.toSanText() ?: "" }
 	static private def CharSequence moveNumberText(int value){ if(value != -1) value.toString + "." else "" }
 }

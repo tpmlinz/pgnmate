@@ -1,14 +1,14 @@
-package com.pgnmate.pgnparser.facade
+package com.pgnmate.pgnparser.pgnnode
 
-import com.pgnmate.pgnparser.facade.ESuffix
-
+import com.pgnmate.pgnparser.facade.ECastling
+import com.pgnmate.common.chess.identifiers.PGNMoveSuffix
 
 interface IPGNMove extends IPGNNode {
 		
 	/**
 	 * @return SAN move suffix
 	 */
-	def ESuffix getSuffix()
+	def PGNMoveSuffix getSuffix()
 	
 	/**
 	 * @return Castling type or <code>null</code> if a non-castling move
@@ -19,7 +19,7 @@ interface IPGNMove extends IPGNNode {
 	 * Set new suffix value
 	 * @param suffix value to set
 	 */
-	def void setSuffix(ESuffix suffix)
+	def void setSuffix(PGNMoveSuffix suffix)
 	
 	/**
 	 * Set new suffix value from String

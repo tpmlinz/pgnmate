@@ -5,6 +5,12 @@ import com.google.inject.Guice
 import com.google.inject.Inject
 import com.google.inject.Injector
 import com.google.inject.Provider
+import com.pgnmate.pgnparser.pgnnode.IPGNDatabase
+import com.pgnmate.pgnparser.pgnnode.IPGNGame
+import com.pgnmate.pgnparser.pgnnode.IPGNVariation
+import com.pgnmate.pgnparser.pgnnode.IPGNTagPair
+import com.pgnmate.pgnparser.pgnnode.IPGNMove
+import com.pgnmate.pgnparser.pgnnode.IPGNNag
 
 class PGNFactory {
 	

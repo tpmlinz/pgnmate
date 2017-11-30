@@ -1,9 +1,9 @@
-package com.pgnmate.pgnparser.facade.module
+package com.pgnmate.pgnparser.pgnnode.module
 
-import com.pgnmate.pgnparser.facade.IPGNGame
-import com.pgnmate.pgnparser.facade.IPGNMove
-import com.pgnmate.pgnparser.facade.IPGNTagPair
-import com.pgnmate.pgnparser.facade.IPGNNode
+import com.pgnmate.pgnparser.pgnnode.IPGNGame
+import com.pgnmate.pgnparser.pgnnode.IPGNMove
+import com.pgnmate.pgnparser.pgnnode.IPGNTagPair
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
 
 package class PGNGame extends AbstractPGNNode implements IPGNGame{
 	
@@ -15,8 +15,11 @@ package class PGNGame extends AbstractPGNNode implements IPGNGame{
 	package new(){}
 		
 	override getTags() { tags }	
-	override getResult() { result }	
-	override setGameResult(EGameResult result) { this.result = result }	
+	override getResult() { result }
+	
+	override setGameResult(EGameResult result) { this.result = result }
+	
+		
 	override getElements() { elements }
 	override int getHalfMoveCount(){ moves.size }
 	

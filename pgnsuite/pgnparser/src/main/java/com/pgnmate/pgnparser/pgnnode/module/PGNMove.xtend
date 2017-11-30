@@ -1,22 +1,22 @@
-package com.pgnmate.pgnparser.facade.module
+package com.pgnmate.pgnparser.pgnnode.module
 
-import com.pgnmate.pgnparser.facade.IPGNMove
-import com.pgnmate.pgnparser.facade.ESuffix
+import com.pgnmate.pgnparser.pgnnode.IPGNMove
 import com.pgnmate.pgnparser.facade.ECastling
+import com.pgnmate.common.chess.identifiers.PGNMoveSuffix
 
 package class PGNMove extends AbstractPGNNode implements IPGNMove {
 	
 	static final long serialVersionUID = 1L				
 	
-	var ESuffix suffix = null
+	var PGNMoveSuffix suffix = null
 	var int moveIndicator = -1
 	var String SAN
 	
 	package new(){}
 	
 	override getSuffix() { this.suffix }	
-	override setSuffix(ESuffix suffix) { this.suffix = suffix }	
-	override setSuffix(String symbol) { this.suffix = ESuffix::fromString(symbol) }	
+	override setSuffix(PGNMoveSuffix suffix) { this.suffix = suffix }	
+	override setSuffix(String symbol) { this.suffix = PGNMoveSuffix::fromSanText(symbol) }	
 	override removeSuffix() { suffix = null }
 	
 	override isCheck() { !SAN.nullOrEmpty && SAN.contains('+')  }

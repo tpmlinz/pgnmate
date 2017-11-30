@@ -1,7 +1,7 @@
-package com.pgnmate.pgnparser.facade.module
+package com.pgnmate.pgnparser.pgnnode.module
 
-import com.pgnmate.pgnparser.facade.IPGNVariation
-import com.pgnmate.pgnparser.facade.IPGNNode
+import com.pgnmate.pgnparser.pgnnode.IPGNVariation
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
 import java.util.Collections
 
 package class PGNVariation extends AbstractPGNNode implements IPGNVariation{	

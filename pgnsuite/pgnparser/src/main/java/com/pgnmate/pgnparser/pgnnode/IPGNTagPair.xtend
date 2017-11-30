@@ -1,6 +1,6 @@
-package com.pgnmate.pgnparser.facade
+package com.pgnmate.pgnparser.pgnnode
 
-import com.pgnmate.pgnparser.facade.IPGNNode
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
 
 interface IPGNTagPair extends IPGNNode {
 	

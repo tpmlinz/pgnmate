@@ -2,13 +2,13 @@ package com.pgnmate.pgnparser.facade
 
 import com.google.inject.Inject
 import com.google.inject.Provider
-import com.pgnmate.pgnparser.facade.IPGNDatabase
+import com.pgnmate.pgnparser.pgnnode.IPGNDatabase
 import com.pgnmate.pgnparser.facade.IPGNDatabaseParser
-import com.pgnmate.pgnparser.facade.IPGNGame
-import com.pgnmate.pgnparser.facade.IPGNMove
-import com.pgnmate.pgnparser.facade.IPGNNag
-import com.pgnmate.pgnparser.facade.IPGNTagPair
-import com.pgnmate.pgnparser.facade.IPGNVariation
+import com.pgnmate.pgnparser.pgnnode.IPGNGame
+import com.pgnmate.pgnparser.pgnnode.IPGNMove
+import com.pgnmate.pgnparser.pgnnode.IPGNNag
+import com.pgnmate.pgnparser.pgnnode.IPGNTagPair
+import com.pgnmate.pgnparser.pgnnode.IPGNVariation
 import com.pgnmate.pgnparser.facade.IParserProgressListener
 import com.pgnmate.pgnparser.facade.PGNFactory
 import java.io.ByteArrayInputStream

@@ -2,21 +2,25 @@ package com.pgnmate.pgnparser.facade.module
 
 import com.pgnmate.pgn.PGNBaseListener
 import com.pgnmate.pgn.PGNParser
-import com.pgnmate.pgnparser.facade.ESuffix
-import com.pgnmate.pgnparser.facade.IPGNDatabase
-import com.pgnmate.pgnparser.facade.IPGNGame.EGameResult
-import com.pgnmate.pgnparser.facade.IPGNNode
-import com.pgnmate.pgnparser.facade.IPGNValidator
-import com.pgnmate.pgnparser.facade.IPGNVariation
+
+import com.pgnmate.pgnparser.pgnnode.IPGNDatabase
+import com.pgnmate.pgnparser.pgnnode.IPGNGame.EGameResult
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
+import com.pgnmate.pgnparser.pgnnode.IPGNVariation
+
+
 import com.pgnmate.pgnparser.facade.IParserProgressEvent
 import com.pgnmate.pgnparser.facade.IParserProgressListener
 import com.pgnmate.pgnparser.facade.PGNFactory
+import com.pgnmate.pgnparser.facade.IPGNValidator
+
 import java.util.ArrayDeque
 import java.util.Collection
 import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.misc.ParseCancellationException
 import org.antlr.v4.runtime.tree.ErrorNode
 import org.apache.log4j.Logger
+import com.pgnmate.common.chess.identifiers.PGNMoveSuffix
 
 package class PGNDatabaseParseListener extends PGNBaseListener{
 		
@@ -145,7 +149,7 @@ package class PGNDatabaseParseListener extends PGNBaseListener{
 		}
 		
 		if(ctx?.SUFFIX_ANNOTATION?.text !== null)
-			move.suffix = ESuffix::fromString(ctx.SUFFIX_ANNOTATION.text)
+			move.suffix = PGNMoveSuffix::tryFromSanText(ctx.SUFFIX_ANNOTATION.text)
 			
 		validator.validate(move, ctx) //FIXME - when to call validator - before or after adding to node model		
 			

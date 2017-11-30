@@ -1,5 +1,7 @@
 package com.pgnmate.pgnparser.facade
 
+import com.pgnmate.pgnparser.pgnnode.IPGNNode
+
 /**
  * <h1>PGN Semantic Validation Interface</h1>
  * For each node in the AST validate is called. The validator is call is called in normal

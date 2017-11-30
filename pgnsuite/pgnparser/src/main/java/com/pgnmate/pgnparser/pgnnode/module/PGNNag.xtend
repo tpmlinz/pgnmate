@@ -1,6 +1,6 @@
-package com.pgnmate.pgnparser.facade.module
+package com.pgnmate.pgnparser.pgnnode.module
 
-import com.pgnmate.pgnparser.facade.IPGNNag
+import com.pgnmate.pgnparser.pgnnode.IPGNNag
 
 package class PGNNag extends AbstractPGNNode implements IPGNNag {
 	

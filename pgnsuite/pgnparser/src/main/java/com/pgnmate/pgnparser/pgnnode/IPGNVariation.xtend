@@ -1,4 +1,4 @@
-package com.pgnmate.pgnparser.facade
+package com.pgnmate.pgnparser.pgnnode
 
 import java.util.Collection
 

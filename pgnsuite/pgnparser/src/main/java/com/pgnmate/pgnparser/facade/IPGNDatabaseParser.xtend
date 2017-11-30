@@ -1,6 +1,7 @@
 package com.pgnmate.pgnparser.facade
 
 import org.antlr.v4.runtime.CharStream
+import com.pgnmate.pgnparser.pgnnode.IPGNDatabase
 
 /**
  * PGN Database parser interface

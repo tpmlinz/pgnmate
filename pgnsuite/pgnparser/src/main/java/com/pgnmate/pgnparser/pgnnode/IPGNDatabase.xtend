@@ -1,4 +1,4 @@
-package com.pgnmate.pgnparser.facade
+package com.pgnmate.pgnparser.pgnnode
 
 import java.util.Collection
 
@@ -9,8 +9,9 @@ import java.util.Collection
 interface IPGNDatabase extends IPGNNode {
 	
 	/**
+	 * Returns games in the database
+	 * 
 	 * @return All games in the database
-	 * @Note That the returned objects may be proxies depending on the implementation
 	 */
 	def Collection<IPGNGame> getGames()
 
